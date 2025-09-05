@@ -12,12 +12,31 @@ import {
   CheckCircle,
   Award,
   ExternalLink,
-  Download,
   Menu,
   X,
   Link,
 } from "lucide-react";
 import avatar from "../assets/Anh_CV.jpg";
+
+// SkillBox component để tránh lặp code
+const SkillBox = ({ title, icon, color, items }) => (
+  <div
+    className={`p-6 bg-gradient-to-br from-${color}-500/10 to-${color}-500/20 rounded-xl border border-${color}-500/20 hover:shadow-xl hover:shadow-${color}-500/10 transition-all duration-300`}
+  >
+    <div className="flex items-center gap-3 mb-6">
+      {icon}
+      <h3 className="text-xl font-semibold text-white">{title}</h3>
+    </div>
+    <div className="space-y-3">
+      {items.map((skill, index) => (
+        <div key={index} className="flex items-center gap-3">
+          <CheckCircle size={16} className={`text-${color}-400`} />
+          <span className="text-gray-300">{skill}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+);
 
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -47,32 +66,16 @@ const Portfolio = () => {
   const skills = {
     testing: [
       "Manual Testing",
-      "Test Case Design",
-      "Bug Reporting & Tracking",
-      "Regression Testing",
-      "Cross-browser Testing",
-      "Responsive Testing",
-      "API Testing",
-      "UI/UX Validation",
+      "Test Case Design & Execution",
+      "Bug Reporting",
+      "Regression & Functional Testing",
+      "UI/UX Testing",
+      "API Testing (Postman)",
     ],
-    automation: [
-      "Selenium WebDriver",
-      "Java Programming",
-      "TestNG Framework",
-      "Page Object Model",
-      "ExtentReports",
-      "Cross-browser Automation",
-      "Test Suite Organization",
-    ],
-    tech: [
-      "HTML/CSS/JavaScript",
-      "React.js/Next.js",
-      "Node.js/Laravel",
-      "MySQL/MongoDB",
-      "Git/GitHub/GitLab",
-      "Postman API Testing",
-      "Jira/Excel Reporting",
-    ],
+    automation: ["Selenium WebDriver", "TestNG", "Page Object Model (POM)"],
+    process: ["STLC", "Agile/Scrum (basic)", "Jira", "Git/GitHub"],
+    tech: ["SQL (MySQL)", "Java (for test automation)", "HTML/CSS"],
+    other: ["Teamwork", "Continuous learning", "Problem-solving"],
   };
 
   const projects = [
@@ -81,21 +84,23 @@ const Portfolio = () => {
       period: "06/2025 - 08/2025",
       role: "Manual & Automation Tester",
       tasks: [
-        "Thiết kế & thực thi 30+ Test Cases áp dụng EP, BVA, State Transition",
-        "Kiểm thử thủ công toàn bộ user journey và Responsive/Cross-browser Testing",
-        "Tự động hóa 15+ test scenarios quan trọng với Selenium WebDriver + TestNG",
-        "Áp dụng POM & ExtentReports để tối ưu maintainability và báo cáo chi tiết",
+        "Designed & executed 30+ test cases using Equivalence Partitioning, Boundary Value Analysis, State Transition.",
+        "Performed manual testing on core flows: login, registration, shopping cart, checkout.",
+        "Conducted UI/UX & responsive testing across devices and browsers.",
+        "Categorized & tracked defects by severity, executed retesting & regression.",
+        "Automated core scenarios with Selenium WebDriver + TestNG, applying Page Object Model (POM).",
+        "Managed test suites, generated reports via ExtentReports, executed cross-browser testing (Chrome, Firefox).",
       ],
       achievements: [
-        "Phát hiện 12 bugs (1 Critical, 9 High, 2 Medium/Low)",
-        "Đạt 90% test coverage cho các test case chính",
-        "Giảm 60% thời gian regression testing",
+        "Detected and reported 12 bugs (1 Critical, 9 High, 2 Medium/Low)",
+        "Achieved 90% coverage for main test cases",
+        "Reduced regression testing time by 60% thanks to automation",
       ],
       technologies: ["Selenium WebDriver", "Java", "TestNG", "ExtentReports"],
       links: {
         demo: "https://ecommerce-electronics-zeta.vercel.app",
         code: "https://github.com/VTH0907012/Ecomerce-AutoTest",
-        testcase: "https://docs.google.com/spreadsheets/d/1H-BwWDFfIhZ00KbmCB2jNJcoblQMU6bk/edit?rtpof=true&gid=1477023176#gid=1477023176",
+        testcase: "https://surl.li/jdgsfq",
       },
     },
   ];
@@ -103,16 +108,16 @@ const Portfolio = () => {
   const workExperience = {
     company: "VASD CO.,LTD",
     period: "02/2024 - 02/2025",
-    role: "Front-end Developer",
+    role: "Front-end Developer ",
     projects: [
       "DMS (Medical Equipment Management)",
       "c.HIS (Patient Records)",
       "EMR v2 (Electronic Medical Records)",
     ],
     contributions: [
-      "Frontend Testing và UI/UX Validation cho 3 dự án y tế",
-      "API Integration Testing với backend systems",
-      "Responsive Testing trên multiple devices",
+      "Perform Frontend Testing and UI/UX Validation for 3 medical projects",
+      "API Integration Testing with backend systems",
+      "Responsive Testing on multiple devices",
     ],
   };
 
@@ -194,30 +199,25 @@ const Portfolio = () => {
         className="min-h-screen flex items-center justify-center px-4"
       >
         <div className="max-w-4xl mx-auto text-center">
-          {/* Avatar */}
           <div className="relative mb-8">
-            {/* Border gradient */}
             <div className="w-40 h-40 mx-auto rounded-full bg-gradient-to-r from-blue-500 to-purple-600 p-1 animate-pulse">
-              {/* Avatar image */}
               <img
-                src={avatar} // import avatar từ assets hoặc dùng /avatar.jpg nếu trong public
+                src={avatar}
                 alt="Avatar"
                 className="w-full h-full object-cover rounded-full"
               />
             </div>
-
-            {/* Check icon */}
             <div className="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full animate-bounce flex items-center justify-center">
               <CheckCircle size={20} className="text-white" />
             </div>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-fade-in">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-fade-in">
             Võ Thanh Hiếu
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 animate-slide-up">
-            QA/QC Engineer & Test Automation Specialist
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 animate-slide-up">
+            Tester
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -235,7 +235,6 @@ const Portfolio = () => {
             </button>
           </div>
 
-          {/* Contact Info */}
           <div className="flex flex-wrap justify-center gap-6 text-gray-300">
             <div className="flex items-center gap-2 hover:text-blue-400 transition-colors">
               <Phone size={18} />
@@ -247,7 +246,7 @@ const Portfolio = () => {
             </div>
             <div className="flex items-center gap-2 hover:text-blue-400 transition-colors">
               <MapPin size={18} />
-              <span>Cần Thơ, Việt Nam</span>
+              <span>Ninh Kiều, Cần Thơ City</span>
             </div>
           </div>
         </div>
@@ -264,59 +263,68 @@ const Portfolio = () => {
           <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
             About Me
           </h2>
-
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-start">
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-white mb-4">
                 Career Objectives
               </h3>
-              <div className="space-y-4">
-                <div className="p-4 bg-white/5 rounded-lg border border-white/10">
-                  <h4 className="text-blue-400 font-semibold mb-2">
-                    Short-term Goal
-                  </h4>
-                  <p className="text-gray-300">
-                    Tìm kiếm vị trí QA/QC để áp dụng kỹ năng kiểm thử thủ công
-                    và dần chuyển sang kiểm thử tự động với Selenium và Java.
-                  </p>
-                </div>
-                <div className="p-4 bg-white/5 rounded-lg border border-white/10">
-                  <h4 className="text-purple-400 font-semibold mb-2">
-                    Long-term Goal
-                  </h4>
-                  <p className="text-gray-300">
-                    Trở thành Kỹ sư QA full-stack, thành thạo cả kiểm thử thủ
-                    công và tự động.
-                  </p>
-                </div>
+              <p className="text-gray-300">
+                Detail-oriented QA/Tester Fresher with strong knowledge of STLC
+                and hands-on project experience in manual & automation testing
+                (Selenium, TestNG). Eager to apply testing skills to improve
+                product quality and grow into a full-stack QA Engineer
+                proficient in both manual and automation testing.
+              </p>
+              <div className="p-4 bg-white/5 rounded-lg border border-white/10">
+                <h4 className="text-blue-400 font-semibold mb-2">
+                  Short-term Goal
+                </h4>
+                <p className="text-gray-300">
+                  Looking for a QA/QC position to apply manual testing skills
+                  and gradually move to automation testing with Selenium and
+                  Java.
+                </p>
+              </div>
+              <div className="p-4 bg-white/5 rounded-lg border border-white/10">
+                <h4 className="text-purple-400 font-semibold mb-2">
+                  Long-term Goal
+                </h4>
+                <p className="text-gray-300">
+                  Become a full-stack QA Engineer, proficient in both manual and
+                  automation testing.
+                </p>
               </div>
             </div>
-
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-white mb-4">
                 Education & Certification
               </h3>
-              <div className="space-y-4">
-                <div className="p-4 bg-white/5 rounded-lg border border-white/10">
-                  <div className="flex items-center gap-3 mb-2">
-                    <Award className="text-blue-400" size={20} />
-                    <h4 className="font-semibold text-white">
-                      Đại học Cần Thơ
-                    </h4>
-                  </div>
-                  <p className="text-gray-300">
-                    Công Nghệ Thông Tin (2019 - 2024)
-                  </p>
+              <div className="p-4 bg-white/5 rounded-lg border border-white/10">
+                <div className="flex items-center gap-3 mb-2">
+                  <Award className="text-blue-400" size={20} />
+                  <h4 className="font-semibold text-white">
+                    Can Tho University
+                  </h4>
                 </div>
-                <div className="p-4 bg-white/5 rounded-lg border border-white/10">
-                  <div className="flex items-center gap-3 mb-2">
-                    <TestTube className="text-purple-400" size={20} />
-                    <h4 className="font-semibold text-white">VTI Academy</h4>
-                  </div>
-                  <p className="text-gray-300">
-                    Manual Testing Course (06/2025 - 09/2025)
-                  </p>
+                <p className="text-gray-300">
+                  Information Technology (2019 - 2024)
+                </p>
+              </div>
+              <div className="p-4 bg-white/5 rounded-lg border border-white/10">
+                <div className="flex items-center gap-3 mb-2">
+                  <TestTube className="text-purple-400" size={20} />
+                  <h4 className="font-semibold text-white">VTI Academy</h4>
                 </div>
+                <p className="text-gray-300">
+                  Manual Testing Course (06/2025 - 09/2025)
+                </p>
+              </div>
+              <div className="p-4 bg-white/5 rounded-lg border border-white/10">
+                <div className="flex items-center gap-3 mb-2">
+                  <Award className="text-green-400" size={20} />
+                  <h4 className="font-semibold text-white">TOEIC</h4>
+                </div>
+                <p className="text-gray-300">TOEIC 400+ (2024 - 2026)</p>
               </div>
             </div>
           </div>
@@ -334,61 +342,37 @@ const Portfolio = () => {
           <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
             Technical Skills
           </h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Manual Testing Skills */}
-            <div className="p-6 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl border border-blue-500/20 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300">
-              <div className="flex items-center gap-3 mb-6">
-                <TestTube className="text-blue-400" size={24} />
-                <h3 className="text-xl font-semibold text-white">
-                  Manual Testing
-                </h3>
-              </div>
-              <div className="space-y-3">
-                {skills.testing.map((skill, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <CheckCircle size={16} className="text-blue-400" />
-                    <span className="text-gray-300">{skill}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Automation Testing Skills */}
-            <div className="p-6 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl border border-purple-500/20 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300">
-              <div className="flex items-center gap-3 mb-6">
-                <Zap className="text-purple-400" size={24} />
-                <h3 className="text-xl font-semibold text-white">
-                  Test Automation
-                </h3>
-              </div>
-              <div className="space-y-3">
-                {skills.automation.map((skill, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <CheckCircle size={16} className="text-purple-400" />
-                    <span className="text-gray-300">{skill}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Technical Skills */}
-            <div className="p-6 bg-gradient-to-br from-pink-500/10 to-blue-500/10 rounded-xl border border-pink-500/20 hover:shadow-xl hover:shadow-pink-500/10 transition-all duration-300">
-              <div className="flex items-center gap-3 mb-6">
-                <Code className="text-pink-400" size={24} />
-                <h3 className="text-xl font-semibold text-white">
-                  Technical Stack
-                </h3>
-              </div>
-              <div className="space-y-3">
-                {skills.tech.map((skill, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <CheckCircle size={16} className="text-pink-400" />
-                    <span className="text-gray-300">{skill}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <SkillBox
+              title="Manual Testing"
+              icon={<TestTube className="text-blue-400" size={24} />}
+              color="blue"
+              items={skills.testing}
+            />
+            <SkillBox
+              title="Test Automation"
+              icon={<Zap className="text-purple-400" size={24} />}
+              color="purple"
+              items={skills.automation}
+            />
+            <SkillBox
+              title="Process & Tools"
+              icon={<Code className="text-green-400" size={24} />}
+              color="green"
+              items={skills.process}
+            />
+            <SkillBox
+              title="Database & Programming"
+              icon={<Code className="text-yellow-400" size={24} />}
+              color="yellow"
+              items={skills.tech}
+            />
+            <SkillBox
+              title="Other"
+              icon={<Code className="text-pink-400" size={24} />}
+              color="pink"
+              items={skills.other}
+            />
           </div>
         </div>
       </section>
@@ -404,8 +388,7 @@ const Portfolio = () => {
           <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
             Work Experience
           </h2>
-
-          <div className="max-w-4xl mx-auto">
+          <div className="grid gap-8 sm:grid-cols-2">
             <div className="p-8 bg-white/5 rounded-xl border border-white/10 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
                 <div>
@@ -421,7 +404,6 @@ const Portfolio = () => {
                   <span>{workExperience.period}</span>
                 </div>
               </div>
-
               <div className="space-y-6">
                 <div>
                   <h4 className="text-lg font-semibold text-white mb-3">
@@ -439,7 +421,6 @@ const Portfolio = () => {
                     ))}
                   </ul>
                 </div>
-
                 <div>
                   <h4 className="text-lg font-semibold text-white mb-3">
                     Projects Involved:
@@ -472,8 +453,7 @@ const Portfolio = () => {
           <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
             Testing Projects
           </h2>
-
-          <div className="max-w-4xl mx-auto">
+          <div className="grid gap-8">
             {projects.map((project, index) => (
               <div
                 key={index}
@@ -491,89 +471,67 @@ const Portfolio = () => {
                     <span>{project.period}</span>
                   </div>
                 </div>
-                <div>
-                  <h4 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-                    <CheckCircle className="text-green-400" size={20} />
-                    Công việc thực hiện:
-                  </h4>
-                  <ul className="space-y-2">
-                    {project.tasks.map((task, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
-                        <span className="text-blue-400 mt-1">✔</span>
-                        <span className="text-gray-300">{task}</span>
-                      </li>
-                    ))}
-                  </ul>
+
+                <h4 className="text-lg font-semibold text-white mb-3">
+                  Tasks Performed:
+                </h4>
+                <ul className="space-y-2 mb-6">
+                  {project.tasks.map((task, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <CheckCircle size={16} className="text-blue-400 mt-1" />
+                      <span className="text-gray-300">{task}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <h4 className="text-lg font-semibold text-white mb-3">
+                  Achievements:
+                </h4>
+                <ul className="space-y-2 mb-6">
+                  {project.achievements.map((ach, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <Award size={16} className="text-yellow-400 mt-1" />
+                      <span className="text-gray-300">{ach}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="flex flex-wrap gap-3 mb-6">
+                  {project.technologies.map((tech, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm border border-purple-500/30"
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
-                <div className="space-y-6 mt-4">
-                  <div>
-                    <h4 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-                      <Bug className="text-red-400" size={20} />
-                      Key Achievements:
-                    </h4>
-                    <ul className="space-y-2">
-                      {project.achievements.map((achievement, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <CheckCircle
-                            size={16}
-                            className="text-green-400 mt-1 flex-shrink-0"
-                          />
-                          <span className="text-gray-300">{achievement}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
 
-                  <div>
-                    <h4 className="text-lg font-semibold text-white mb-3">
-                      Technologies Used:
-                    </h4>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.technologies.map((tech, idx) => (
-                        <span
-                          key={idx}
-                          className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm border border-purple-500/30"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    {/* Link dự án */}
-                    <a
-                      href={project.links.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                    >
-                      <ExternalLink size={16} />
-                      Link dự án
-                    </a>
-
-                    {/* Link Testcase */}
-                    <a
-                      href={project.links.testcase}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-                    >
-                      <Link size={16} />
-                      Link Testcase
-                    </a>
-
-                    {/* Source Code */}
-                    <a
-                      href={project.links.code}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 border border-gray-500 text-gray-300 rounded-lg hover:bg-gray-500 hover:text-white transition-colors"
-                    >
-                      <Github size={16} />
-                      Source Code
-                    </a>
-                  </div>
+                <div className="flex flex-wrap gap-4">
+                  <a
+                    href={project.links.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  >
+                    <ExternalLink size={16} /> Demo
+                  </a>
+                  <a
+                    href={project.links.testcase}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                  >
+                    <Link size={16} /> Test Cases
+                  </a>
+                  <a
+                    href={project.links.code}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-colors"
+                  >
+                    <Github size={16} /> Automation Code
+                  </a>
                 </div>
               </div>
             ))}
@@ -629,7 +587,7 @@ const Portfolio = () => {
 
           <div className="text-center">
             <p className="text-gray-400 mb-4">
-              TOEIC LR 400+ • Available for immediate start
+              TOEIC LR 400+ (Improving)• Available for immediate start
             </p>
             <div className="flex justify-center">
               <div className="px-6 py-2 bg-green-500/20 text-green-300 rounded-full border border-green-500/30">
@@ -641,43 +599,9 @@ const Portfolio = () => {
       </section>
 
       {/* Footer */}
-      <footer className="w-full py-8 px-4 bg-black/40 border-t border-white/10">
-        <div className="w-full max-w-6xl mx-auto text-center text-gray-400">
-          <p>&copy; 2025 Võ Thanh Hiếu. All rights reserved.</p>
-        </div>
+      <footer className="py-6 text-center text-gray-400 text-sm border-t border-white/10">
+        © {new Date().getFullYear()} Võ Thanh Hiếu. All Rights Reserved.
       </footer>
-
-      <style jsx>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes slide-up {
-          from {
-            opacity: 0;
-            transform: translateY(50px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-fade-in {
-          animation: fade-in 1s ease-out;
-        }
-
-        .animate-slide-up {
-          animation: slide-up 1s ease-out 0.2s both;
-        }
-      `}</style>
     </div>
   );
 };
