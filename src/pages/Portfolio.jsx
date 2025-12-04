@@ -105,21 +105,36 @@ const Portfolio = () => {
     },
   ];
 
-  const workExperience = {
-    company: "VASD CO.,LTD",
-    period: "02/2024 - 02/2025",
-    role: "Front-end Developer ",
-    projects: [
-      "DMS (Medical Equipment Management)",
-      "c.HIS (Patient Records)",
-      "EMR v2 (Electronic Medical Records)",
-    ],
-    contributions: [
-      "Perform Frontend Testing and UI/UX Validation for 3 medical projects",
-      "API Integration Testing with backend systems",
-      "Responsive Testing on multiple devices",
-    ],
-  };
+  const workExperiences = [
+    {
+      company: "CREQA VIETNAM LTD",
+      period: "09/2025 - Present",
+      role: "QC Engineer",
+      contributions: [
+        "Conducted manual testing on Web, Mobile, and Game applications.",
+        "Logged and tracked bugs; performed regression testing.",
+        "Created and executed test cases following project test plans.",
+        "Performed functional, performance, stability, and compatibility testing.",
+        "Reported progress to Team Leader and ensured deadlines were met.",
+      ],
+      projects: ["Web App", "Mobile App", "Game Testing"],
+    },
+    {
+      company: "VASD CO.,LTD",
+      period: "02/2024 - 02/2025",
+      role: "Front-end Developer",
+      projects: [
+        "DMS (Medical Equipment Management)",
+        "c.HIS (Patient Records)",
+        "EMR v2 (Electronic Medical Records)",
+      ],
+      contributions: [
+        "Perform Frontend Testing and UI/UX Validation for 3 medical projects",
+        "API Integration Testing with backend systems",
+        "Responsive Testing on multiple devices",
+      ],
+    },
+  ];
 
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
@@ -322,9 +337,11 @@ const Portfolio = () => {
               <div className="p-4 bg-white/5 rounded-lg border border-white/10">
                 <div className="flex items-center gap-3 mb-2">
                   <Award className="text-green-400" size={20} />
-                  <h4 className="font-semibold text-white">TOEIC</h4>
+                  <h4 className="font-semibold text-white">English</h4>
                 </div>
-                <p className="text-gray-300">TOEIC 400+ (2024 - 2026)</p>
+                <p className="text-gray-300">
+                  Basic reading skill for technical documents, improving daily
+                </p>
               </div>
             </div>
           </div>
@@ -389,55 +406,60 @@ const Portfolio = () => {
             Work Experience
           </h2>
           <div className="grid gap-8 sm:grid-cols-2">
-            <div className="p-8 bg-white/5 rounded-xl border border-white/10 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300">
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-                <div>
-                  <h3 className="text-2xl font-semibold text-white mb-2">
-                    {workExperience.company}
-                  </h3>
-                  <p className="text-blue-400 font-medium">
-                    {workExperience.role}
-                  </p>
+            {workExperiences.map((exp, index) => (
+              <div
+                key={index}
+                className="p-8 bg-white/5 rounded-xl border border-white/10 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300"
+              >
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                  <div>
+                    <h3 className="text-2xl font-semibold text-white mb-2">
+                      {exp.company}
+                    </h3>
+                    <p className="text-blue-400 font-medium">{exp.role}</p>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-300 mt-2 md:mt-0">
+                    <Calendar size={18} />
+                    <span>{exp.period}</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 text-gray-300 mt-2 md:mt-0">
-                  <Calendar size={18} />
-                  <span>{workExperience.period}</span>
-                </div>
-              </div>
-              <div className="space-y-6">
-                <div>
-                  <h4 className="text-lg font-semibold text-white mb-3">
-                    Quality-related Contributions:
-                  </h4>
-                  <ul className="space-y-2">
-                    {workExperience.contributions.map((contribution, index) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <CheckCircle
-                          size={16}
-                          className="text-green-400 mt-1 flex-shrink-0"
-                        />
-                        <span className="text-gray-300">{contribution}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-lg font-semibold text-white mb-3">
-                    Projects Involved:
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {workExperience.projects.map((project, index) => (
-                      <span
-                        key={index}
-                        className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30"
-                      >
-                        {project}
-                      </span>
-                    ))}
+
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="text-lg font-semibold text-white mb-3">
+                      Contributions:
+                    </h4>
+                    <ul className="space-y-2">
+                      {exp.contributions.map((item, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <CheckCircle
+                            size={16}
+                            className="text-green-400 mt-1"
+                          />
+                          <span className="text-gray-300">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-semibold text-white mb-3">
+                      Projects:
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {exp.projects.map((project, i) => (
+                        <span
+                          key={i}
+                          className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30"
+                        >
+                          {project}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -586,9 +608,6 @@ const Portfolio = () => {
           </div>
 
           <div className="text-center">
-            <p className="text-gray-400 mb-4">
-              TOEIC LR 400+ (Improving)• Available for immediate start
-            </p>
             <div className="flex justify-center">
               <div className="px-6 py-2 bg-green-500/20 text-green-300 rounded-full border border-green-500/30">
                 Currently seeking QA/QC opportunities
