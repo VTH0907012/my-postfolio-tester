@@ -111,7 +111,7 @@ const Portfolio = () => {
       period: "09/2025 - Present",
       role: "QC Engineer",
       contributions: [
-        "Conducted manual testing on Web, Mobile, and Game applications.",
+        "Conducted manual testing on Web and Mobile applications.",
         "Logged and tracked bugs; performed regression testing.",
         "Created and executed test cases following project test plans.",
         "Performed functional, performance, stability, and compatibility testing.",
