@@ -84,17 +84,17 @@ const Portfolio = () => {
       period: "06/2025 - 08/2025",
       role: "Manual & Automation Tester",
       tasks: [
-        "Designed & executed 30+ test cases using Equivalence Partitioning, Boundary Value Analysis, State Transition.",
-        "Performed manual testing on core flows: login, registration, shopping cart, checkout.",
+        "Designed & executed 250+ test cases using Equivalence Partitioning, Boundary Value Analysis, State Transition.",
+        "Performed manual testing on core flows: login, registration, cart, checkout,...",
         "Conducted UI/UX & responsive testing across devices and browsers.",
         "Categorized & tracked defects by severity, executed retesting & regression.",
         "Automated core scenarios with Selenium WebDriver + TestNG, applying Page Object Model (POM).",
         "Managed test suites, generated reports via ExtentReports, executed cross-browser testing (Chrome, Firefox).",
       ],
       achievements: [
-        "Detected and reported 12 bugs (1 Critical, 9 High, 2 Medium/Low)",
-        "Achieved 90% coverage for main test cases",
-        "Reduced regression testing time by 60% thanks to automation",
+        "Detected and reported 25 bugs (6 Critical, 16 High, 3 Medium/Low)",
+        "Covered most main business flows with comprehensive test cases",
+        "Significantly reduced regression testing time by applying automation",
       ],
       technologies: ["Selenium WebDriver", "Java", "TestNG", "ExtentReports"],
       links: {
