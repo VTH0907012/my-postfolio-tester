@@ -112,16 +112,16 @@ const Portfolio = () => {
       role: "QC Engineer",
       contributions: [
         "Conducted manual testing on Web and Mobile applications.",
-        "Logged and tracked bugs; performed regression testing.",
+        "Logged and tracked bugs, performed regression testing.",
         "Created and executed test cases following project test plans.",
         "Performed functional, performance, stability, and compatibility testing.",
         "Reported progress to Team Leader and ensured deadlines were met.",
       ],
-      projects: ["Web App", "Mobile App", "Game Testing"],
+      projects: ["Web App", "Mobile App"],
     },
     {
       company: "VASD CO.,LTD",
-      period: "02/2024 - 02/2025",
+      period: "02/2024 - 03/2025",
       role: "Front-end Developer",
       projects: [
         "DMS (Medical Equipment Management)",
